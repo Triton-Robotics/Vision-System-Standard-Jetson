@@ -139,7 +139,7 @@ void Camera::WorkThread(void* pUser) {
 
     // set up and open serial port
     Serial* serial = new Serial();
-    //serial.setup("/dev/ttyUSB0"); // run error check here for status code 1
+    //serial.setup("/dev/ttyTHS1"); // run error check here for status code 1
 
     // Test one frame display
     MV_FRAME_OUT stOutFrame;
