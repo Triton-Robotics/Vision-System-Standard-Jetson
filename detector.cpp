@@ -30,7 +30,7 @@ tuple<float, float> Detector::DetectLive(Mat &input) {
 	
 	// camera values
 	// WARNING: NEED TO BE UPDATED WITH ACTUAL VALUES -----------------------------------------------------------------
-	int camera_res[2] = {1280, 720};
+	int camera_res[2] = {1280, 1024};
 	int camera_fov[2] = {90, 90};
 	int camera_midpoint[2] = {camera_res[0]/2, camera_res[1]/2};
 	// WARNING: NEED TO BE UPDATED WITH ACTUAL VALUES -----------------------------------------------------------------
@@ -203,7 +203,13 @@ tuple<float, float> Detector::DetectLive(Mat &input) {
 
 		// Up-and-down angle offset
         float offset_XY = ((camera_midpoint[1] - final_armor.getCenter().y) / camera_midpoint[1]) * camera_fov[1] / 2;
-
+		
+		float focal_length = 2.8; //millimeters
+		float module_width = 235; //millimeters
+		float pixel_width = 0.0000048; //meters per pixel
+		float distance = (focal_length * module_width)/(get<0>(final_armor.getDistance())*pixel_width);
+		printf("Estimated distance: %f", distance);
+		
         // might want to add input = raw here for debug purposes
         return make_tuple(offset_XY, offset_YZ);
     }
