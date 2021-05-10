@@ -7,6 +7,10 @@ int Serial::setup(const char* filename) {
 	// Open the serial port
 	
 	serial_port = open(filename, O_RDWR);
+	if (serial_port < 0) {
+		printf("error %i from open: %s\n", errno, strerror(errno));
+		return 1;
+	}
 
 	// set up termios struct tty for serial params
 	// Read in existing settings first, handle errors

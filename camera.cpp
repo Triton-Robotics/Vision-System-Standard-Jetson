@@ -139,7 +139,9 @@ void Camera::WorkThread(void* pUser) {
 
     // set up and open serial port
     Serial* serial = new Serial();
-    //serial.setup("/dev/ttyTHS1"); // run error check here for status code 1
+    if (serial.setup("/dev/ttyUSB0")) {
+        return;
+    }
 
     // Test one frame display
     MV_FRAME_OUT stOutFrame;
@@ -189,9 +191,15 @@ void Camera::WorkThread(void* pUser) {
         detector.DetectLive(img);
 	
 	// return from detector and write to serial
-	// tuple<float, float> angles = detector.DetectLive(img);
-	//write(serial->serial_port, get<0>(angles), sizeof(float));
-	//write(serial->serial_port, get<1>(angles), sizeof(float));
+	tuple<float, float> angles = detector.DetectLive(img);
+    char angleXY[50];
+    char angleYZ[50];
+
+    sprintf(angleXY, "%f", get<0>(angles));
+    sprintf(angleYZ, "%f", get<0>(angles));
+
+	write(serial->serial_port, angleXY, sizeof(angleXY));
+    write(serial->serial_port, angleYZ, sizeof(angleYZ));
 
         // show images from live camera feed - this works
         imshow("cam", img);

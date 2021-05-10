@@ -205,8 +205,8 @@ tuple<float, float> Detector::DetectLive(Mat &input) {
         float offset_XY = ((camera_midpoint[1] - final_armor.getCenter().y) / camera_midpoint[1]) * camera_fov[1] / 2;
 		
 		float focal_length = 2.8; //millimeters
-		float module_width = 235; //millimeters
-		float pixel_width = 0.0000048; //meters per pixel
+		float module_width = 140; //millimeters - was 235
+		float pixel_width = 4.8; //meters per pixel
 		float distance = (focal_length * module_width)/(get<0>(final_armor.getDistance())*pixel_width);
 		printf("Estimated distance: %f", distance);
 		
