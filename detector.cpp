@@ -30,7 +30,7 @@ tuple<float, float> Detector::DetectLive(Mat &input) {
 	
 	// camera values
 	// WARNING: NEED TO BE UPDATED WITH ACTUAL VALUES -----------------------------------------------------------------
-	int camera_res[2] = {1280, 720};
+	int camera_res[2] = {1280, 1024};
 	int camera_fov[2] = {90, 90};
 	int camera_midpoint[2] = {camera_res[0]/2, camera_res[1]/2};
 	// WARNING: NEED TO BE UPDATED WITH ACTUAL VALUES -----------------------------------------------------------------
