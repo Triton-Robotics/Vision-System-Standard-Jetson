@@ -139,7 +139,7 @@ void Camera::WorkThread(void* pUser) {
 
     // set up and open serial port
     Serial* serial = new Serial();
-    if (serial.setup("/dev/ttyUSB0")) {
+    if (serial->setup("/dev/ttyUSB0")) {
         return;
     }
 
